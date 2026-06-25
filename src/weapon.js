@@ -1,6 +1,7 @@
 // Gun HUD + firing. Firing casts a center ray: it always leaves a decal on the
 // hit wall, and if that wall face is a slide it toggles the slide's highlight.
 
+import { config } from './config.js';
 import { singleRay } from './engine/raycaster.js';
 import { addDecal } from './world/decals.js';
 
@@ -15,10 +16,17 @@ export function fireWeapon(weapon, player, map, slides, decals, decalTex) {
   const hit = singleRay(player, map);
   if (!hit) return;
 
+  // Vertical aim: the wall height under a screen-centered crosshair, derived from
+  // the Y-shear pitch. zOff is height above eye level (0.5). At steep pitch + close
+  // range this can ride above the wall top / below the floor — that's genuinely
+  // where you're pointing (ceiling/floor), so we don't clamp it.
+  const zOff = (player.pitch * hit.dist) / config.internalHeight;
+
   // Nudge the decal slightly off the wall toward the player to avoid z-fighting.
   addDecal(decals, {
     x: hit.hitX - player.dirX * 0.02,
     y: hit.hitY - player.dirY * 0.02,
+    zOff,
     size: 0.16,
     texture: decalTex,
   });
@@ -40,8 +48,9 @@ export function renderWeapon(ctx, weapon, input, player) {
   const w = ctx.canvas.width;
   const h = ctx.canvas.height;
   const cx = w / 2;
-  // Track the pitch-sheared horizon so the crosshair marks where shots land.
-  const cy = h / 2 + player.pitch;
+  // Fixed at screen center: aim follows the look, the view pitches under it, and
+  // shots land exactly here (see fireWeapon's zOff).
+  const cy = h / 2;
 
   // Crosshair.
   ctx.strokeStyle = 'rgba(255,255,255,0.7)';

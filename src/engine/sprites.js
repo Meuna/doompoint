@@ -32,7 +32,11 @@ export function renderSprites(ctx, player, sprites, zBuffer) {
     const dim = Math.abs(h / transformY) * (s.size || 0.3);
     const startX = Math.floor(screenX - dim / 2);
     const endX = Math.floor(screenX + dim / 2);
-    const startY = Math.floor(h / 2 - dim / 2 + player.pitch);
+    // zOff: world-height above eye level (0.5). Perspective-scaled, same linear
+    // projection as walls, so a sprite stays glued to its wall spot at any pitch.
+    const startY = Math.floor(
+      h / 2 - dim / 2 + player.pitch - (s.zOff || 0) * (h / transformY)
+    );
     const span = endX - startX;
     if (span <= 0) continue;
 

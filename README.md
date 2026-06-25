@@ -27,9 +27,11 @@ python3 -m http.server 8000
 - **Esc** — release the mouse.
 
 Note: vertical look is a **Y-shear** — the horizon slides up/down to reframe the
-view, rather than a true 3D pitch (the map is a flat grid). One consequence:
-shots always land at wall-center height, so firing toggles the whole slide's
-highlight regardless of how far up or down you're looking.
+view, rather than a true 3D pitch (the map is a flat grid). Aim is still genuinely
+3D, though: the crosshair stays centered and bullet decals land where you point,
+high or low. (The Y-shear *is* the linear billboard projection, so a decal stays
+glued to its spot on the wall as you move.) The hit-test that picks which wall you
+struck is horizontal, so firing a slide still toggles the whole slide's highlight.
 
 ## Authoring slides
 
