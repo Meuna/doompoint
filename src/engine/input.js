@@ -1,5 +1,5 @@
 // Keyboard + pointer-lock mouse input. Returns a mutable state object the game
-// loop reads each frame. Mouse yaw accumulates between frames; `fire` is a
+// loop reads each frame. Mouse yaw/lookY accumulate between frames; `fire` is a
 // one-shot the loop consumes.
 
 export function createInput(canvas) {
@@ -11,6 +11,7 @@ export function createInput(canvas) {
     turnLeft: false,
     turnRight: false,
     yaw: 0,
+    lookY: 0,
     fire: false,
     locked: false,
   };
@@ -49,7 +50,10 @@ export function createInput(canvas) {
   });
 
   document.addEventListener('mousemove', (e) => {
-    if (state.locked) state.yaw += e.movementX;
+    if (state.locked) {
+      state.yaw += e.movementX;
+      state.lookY += e.movementY;
+    }
   });
 
   return state;

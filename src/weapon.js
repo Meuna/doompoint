@@ -36,19 +36,21 @@ export function updateWeapon(weapon, dt) {
   if (weapon.recoil > 0) weapon.recoil -= dt;
 }
 
-export function renderWeapon(ctx, weapon, input) {
+export function renderWeapon(ctx, weapon, input, player) {
   const w = ctx.canvas.width;
   const h = ctx.canvas.height;
   const cx = w / 2;
+  // Track the pitch-sheared horizon so the crosshair marks where shots land.
+  const cy = h / 2 + player.pitch;
 
   // Crosshair.
   ctx.strokeStyle = 'rgba(255,255,255,0.7)';
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(cx - 5, h / 2);
-  ctx.lineTo(cx + 5, h / 2);
-  ctx.moveTo(cx, h / 2 - 5);
-  ctx.lineTo(cx, h / 2 + 5);
+  ctx.moveTo(cx - 5, cy);
+  ctx.lineTo(cx + 5, cy);
+  ctx.moveTo(cx, cy - 5);
+  ctx.lineTo(cx, cy + 5);
   ctx.stroke();
 
   // Gun: a simple procedural pistol at bottom-center, with recoil bob.

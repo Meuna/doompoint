@@ -9,6 +9,9 @@ export function createPlayer(start) {
     dirY: start.dirY,
     planeX: start.planeX,
     planeY: start.planeY,
+    // Vertical look as a Y-shear horizon offset in framebuffer pixels (not a
+    // true 3D pitch). Positive = looking up. See updatePlayer + raycaster.
+    pitch: 0,
   };
 }
 
@@ -43,6 +46,12 @@ export function updatePlayer(p, input, map, dt, cfg) {
   if (input.yaw) {
     rotate(p, input.yaw * cfg.mouseSensitivity);
     input.yaw = 0;
+  }
+  if (input.lookY) {
+    p.pitch -= input.lookY * cfg.pitchSensitivity; // mouse up (negative) = look up
+    const max = cfg.maxPitch * cfg.internalHeight;
+    p.pitch = Math.max(-max, Math.min(max, p.pitch));
+    input.lookY = 0;
   }
   if (input.turnLeft) rotate(p, -cfg.rotSpeed * dt);
   if (input.turnRight) rotate(p, cfg.rotSpeed * dt);

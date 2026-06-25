@@ -100,7 +100,7 @@ export function castRays(ctx, player, map, slides, defaultTex, zBuffer) {
     zBuffer[x] = dist;
 
     const lineHeight = h / dist;
-    const drawStart = -lineHeight / 2 + h / 2;
+    const drawStart = -lineHeight / 2 + h / 2 + player.pitch;
 
     // Resolve which texture this face shows.
     const tile = map.get(hit.mapX, hit.mapY);

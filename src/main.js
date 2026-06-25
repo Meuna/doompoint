@@ -47,15 +47,16 @@ async function main() {
   }
 
   function render() {
-    // Ceiling + floor as flat bands.
+    // Ceiling + floor as flat bands, split at the pitch-sheared horizon.
+    const horizon = canvas.height / 2 + player.pitch;
     ctx.fillStyle = config.colors.ceiling;
-    ctx.fillRect(0, 0, canvas.width, canvas.height / 2);
+    ctx.fillRect(0, 0, canvas.width, horizon);
     ctx.fillStyle = config.colors.floor;
-    ctx.fillRect(0, canvas.height / 2, canvas.width, canvas.height / 2);
+    ctx.fillRect(0, horizon, canvas.width, canvas.height - horizon);
 
     castRays(ctx, player, map, slides, brick, zBuffer);
     renderSprites(ctx, player, decals, zBuffer);
-    renderWeapon(ctx, weapon, input);
+    renderWeapon(ctx, weapon, input, player);
   }
 
   startLoop(update, render);

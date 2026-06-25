@@ -22,12 +22,14 @@ python3 -m http.server 8000
 
 - **Click** the canvas to capture the mouse (pointer lock).
 - **WASD** / arrows — move & strafe.
-- **Mouse** — look left/right.
+- **Mouse** — look around (left/right turns, up/down tilts the view).
 - **Click** — fire (leaves a bullet decal; highlights a slide if you hit one).
 - **Esc** — release the mouse.
 
-Note: like classic Doom-style raycasters, there is **no vertical look (pitch)** —
-this is intentional, not a bug.
+Note: vertical look is a **Y-shear** — the horizon slides up/down to reframe the
+view, rather than a true 3D pitch (the map is a flat grid). One consequence:
+shots always land at wall-center height, so firing toggles the whole slide's
+highlight regardless of how far up or down you're looking.
 
 ## Authoring slides
 
