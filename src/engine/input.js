@@ -51,7 +51,7 @@ export function createInput(canvas) {
 
   document.addEventListener('mousemove', (e) => {
     if (state.locked) {
-      state.yaw += e.movementX;
+      state.yaw -= e.movementX;
       state.lookY += e.movementY;
     }
   });

@@ -10,7 +10,7 @@ export const config = {
 
   moveSpeed: 3.2, // world units / second
   rotSpeed: 2.6, // radians / second (keyboard arrow turning)
-  mouseSensitivity: 0.0022, // radians per pixel of mouse movement
+  mouseSensitivity: 0.001, // radians per pixel of mouse movement
   pitchSensitivity: 0.6, // framebuffer-px horizon shift per pixel of mouse-Y
   maxPitch: 0.5, // clamp as a fraction of internalHeight (keeps horizon in [0, h])
   playerRadius: 0.22, // collision radius
