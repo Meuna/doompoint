@@ -5,6 +5,8 @@ a simple map. Walk up to a slide, look at it, and **fire** to leave a mark.
 Built as a from-scratch vanilla-JS canvas raycaster — no build
 step, no dependencies.
 
+[**▶ Try it live!**](https://meuna.github.io/doompoint/)
+
 ## Run
 
 It's a static site; serve the folder with any static server:
