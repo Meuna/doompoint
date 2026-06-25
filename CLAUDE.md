@@ -8,7 +8,9 @@ highlight it.
 
 ## Working with this repository
 
-- **vanilla-JS** Built as a from-scratch vanilla-JS canvas raycaster — no build
+- **Vanilla-JS** Built as a from-scratch vanilla-JS canvas raycaster — no build
 step, no dependencies.
 
 - **Keep the README.md up-to-date.**
+
+- **Plans include commits**
