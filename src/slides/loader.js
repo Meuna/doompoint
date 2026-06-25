@@ -23,7 +23,6 @@ export async function loadSlides(size) {
 }
 
 async function buildSlide(entry, idx, size) {
-  const highlightColor = entry.highlightColor || '#ffd34d';
   try {
     let canvas;
     if (entry.type === 'markdown') {
@@ -37,14 +36,9 @@ async function buildSlide(entry, idx, size) {
     } else {
       throw new Error('unknown slide type: ' + entry.type);
     }
-    return { canvas, highlightColor, highlighted: false, index: idx };
+    return { canvas, index: idx };
   } catch (e) {
     console.warn(`Slide #${idx + 1} failed; using placeholder.`, e);
-    return {
-      canvas: makeMissingTexture(size, idx),
-      highlightColor,
-      highlighted: false,
-      index: idx,
-    };
+    return { canvas: makeMissingTexture(size, idx), index: idx };
   }
 }

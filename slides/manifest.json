@@ -2,7 +2,7 @@
   "title": "DoomPoint Demo",
   "slides": [
     { "type": "markdown", "src": "01-title.md" },
-    { "type": "markdown", "src": "02-agenda.md", "highlightColor": "#ff5555" },
+    { "type": "markdown", "src": "02-agenda.md" },
     { "type": "markdown", "src": "03-engine.md" },
     { "type": "image", "src": "04-demo.png", "fit": "contain" }
   ]

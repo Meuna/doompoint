@@ -3,8 +3,7 @@
 ## Project
 
 A toy, Doom-like slide presentation webapp. Slides are textures on the walls of
-a simple map. Walk up to a slide, look at it, and **fire** to leave a mark and
-highlight it.
+a simple map. Walk up to a slide, look at it, and **fire** to leave a mark.
 
 ## Working with this repository
 

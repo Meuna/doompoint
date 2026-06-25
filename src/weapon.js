@@ -1,5 +1,4 @@
-// Gun HUD + firing. Firing casts a center ray: it always leaves a decal on the
-// hit wall, and if that wall face is a slide it toggles the slide's highlight.
+// Gun HUD + firing. Firing casts a center ray and leaves a decal on the hit wall.
 
 import { config } from './config.js';
 import { singleRay } from './engine/raycaster.js';
@@ -9,7 +8,7 @@ export function createWeapon() {
   return { flash: 0, recoil: 0 };
 }
 
-export function fireWeapon(weapon, player, map, slides, decals, decalTex) {
+export function fireWeapon(weapon, player, map, decals, decalTex) {
   weapon.flash = 0.07;
   weapon.recoil = 0.13;
 
@@ -30,13 +29,6 @@ export function fireWeapon(weapon, player, map, slides, decals, decalTex) {
     size: 0.16,
     texture: decalTex,
   });
-
-  const tile = map.get(hit.mapX, hit.mapY);
-  const ref = tile.faces && tile.faces[hit.face];
-  if (ref && ref.kind === 'slide') {
-    const s = slides[ref.index];
-    s.highlighted = !s.highlighted;
-  }
 }
 
 export function updateWeapon(weapon, dt) {

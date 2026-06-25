@@ -42,7 +42,7 @@ async function main() {
     updateWeapon(weapon, dt);
     if (input.fire) {
       input.fire = false;
-      fireWeapon(weapon, player, map, slides, decals, decalTex);
+      fireWeapon(weapon, player, map, decals, decalTex);
     }
   }
 

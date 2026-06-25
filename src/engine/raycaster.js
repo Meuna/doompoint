@@ -6,14 +6,6 @@
 // canvas-"tainted"; drawImage never reads pixels back, so tainting can't break
 // rendering (getImageData would throw SecurityError).
 
-function hexToRgba(hex, a) {
-  const h = hex.replace('#', '');
-  const r = parseInt(h.slice(0, 2), 16);
-  const g = parseInt(h.slice(2, 4), 16);
-  const b = parseInt(h.slice(4, 6), 16);
-  return `rgba(${r},${g},${b},${a})`;
-}
-
 // Core DDA. Returns the hit cell, which side/face was struck, the perpendicular
 // distance, the exact world hit point, and the texture U coordinate (0..1).
 function castDDA(player, map, rayDirX, rayDirY) {
@@ -106,11 +98,8 @@ export function castRays(ctx, player, map, slides, defaultTex, zBuffer) {
     const tile = map.get(hit.mapX, hit.mapY);
     const ref = tile.faces ? tile.faces[hit.face] : null;
     let tex = defaultTex;
-    let highlight = null;
     if (ref && ref.kind === 'slide') {
-      const s = slides[ref.index];
-      tex = s.canvas;
-      if (s.highlighted) highlight = s.highlightColor;
+      tex = slides[ref.index].canvas;
     }
 
     let texX = Math.floor(hit.wallX * tex.width);
@@ -124,10 +113,6 @@ export function castRays(ctx, player, map, slides, defaultTex, zBuffer) {
     // Cheap directional shading: darken y-faces.
     if (hit.side === 1) {
       ctx.fillStyle = 'rgba(0,0,0,0.28)';
-      ctx.fillRect(x, drawStart, 1, lineHeight);
-    }
-    if (highlight) {
-      ctx.fillStyle = hexToRgba(highlight, 0.25);
       ctx.fillRect(x, drawStart, 1, lineHeight);
     }
   }

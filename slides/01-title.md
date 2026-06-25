@@ -4,4 +4,4 @@ A presentation you **walk through**.
 
 Slides are textures on the walls.
 
-*Move up, look, and fire to highlight.*
+*Move up, look, and fire to leave a mark.*

@@ -3,7 +3,7 @@
 - Why present in a **first-person shooter**?
 - The raycaster engine
 - Authoring slides in *markdown*
-- Firing to *highlight*
+- Firing to *leave a mark*
 
 1. Walk the corridor
 2. Look at a wall
