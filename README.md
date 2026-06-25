@@ -18,6 +18,13 @@ python3 -m http.server 8000
 
 (A server is required — ES modules and `fetch` don't work from `file://`.)
 
+## Deploy
+
+Pushing to `main` auto-deploys to GitHub Pages via
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) →
+<https://meuna.github.io/doompoint/>. (One-time setup: in the repo's
+**Settings → Pages**, set **Source** to **GitHub Actions**.)
+
 ## Controls
 
 - **Click** the canvas to capture the mouse (pointer lock).
